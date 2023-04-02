@@ -1,4 +1,31 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
 
-console.log(galleryItems);
+const paletteGallery = document.querySelector('.gallery');
+const galleryCardMarkup = createGalleryCardMarkup(galleryItems);
+
+paletteGallery.insertAdjacentHTML('beforeend', galleryCardMarkup)
+
+
+function createGalleryCardMarkup(galleryItems) {
+    const markup = galleryItems.map(({ preview, original, description }) => {
+        return `
+        <li class="gallery__item">
+        <a class="gallery__link" href="${original}">
+            <img class="gallery__image" src="${preview}" title="${description}" alt="${description}" />
+        </a>
+        </li>
+
+    `
+    });
+    
+    return markup.join('');
+};
+
+var lightbox = new SimpleLightbox('.gallery a', {});
+
+// let gallery = new SimpleLightbox('.gallery a');
+// gallery.on('show.simplelightbox', function (event) {
+	
+// });
+
+
